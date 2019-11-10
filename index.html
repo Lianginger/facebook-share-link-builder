@@ -26,7 +26,7 @@
               <label for="link-url" class="required">Link URL</label>
               <input type="text" class="form-control" id="link-url" />
               <small class="form-text text-muted">
-                請使用 <a href="https://picsee.co/">PicSee</a> 編輯好分享連結的縮圖、大標、說明文字。
+                請使用 <a target="_blank" href="https://picsee.co/">PicSee</a> 編輯好分享連結的縮圖、大標、說明文字。
               </small>
             </div>
             <div class="form-group">
@@ -49,6 +49,7 @@
               <p id="link-display"></p>
             </div>
           </a>
+          <button class="btn btn-primary d-none" id="copy-button" onclick="copyLink()">Copy Link</button>
         </div>
       </div>
     </div>
@@ -60,21 +61,35 @@
       let quote = document.getElementById('quote')
       const linkAnchor = document.getElementById('link-anchor')
       const linkDisplay = document.getElementById('link-display')
+      const copyButton = document.getElementById('copy-button')
+      let finalShareLink
 
       form.addEventListener('input', e => {
         if (linkURL.value === '') {
           linkDisplay.innerText = ''
           linkAnchor.href = ''
+          copyButton.classList.add('d-none')
         } else {
-          const finalShareLink =
+          finalShareLink =
             fbSharer +
             `?u=${encodeURIComponent(linkURL.value)}` +
             (hashtag.value !== '' ? `&hashtag=%23${encodeURIComponent(hashtag.value)}` : '') +
             (quote.value !== '' ? `&quote=${encodeURIComponent(quote.value)}` : '')
           linkDisplay.innerText = finalShareLink
           linkAnchor.href = finalShareLink
+          copyButton.classList.remove('d-none')
         }
       })
+
+      function copyLink() {
+        var tempInput = document.createElement('input')
+        tempInput.style = 'position: absolute; left: -1000px; top: -1000px'
+        tempInput.value = finalShareLink
+        document.body.appendChild(tempInput)
+        tempInput.select()
+        document.execCommand('copy')
+        document.body.removeChild(tempInput)
+      }
     </script>
   </body>
 </html>
