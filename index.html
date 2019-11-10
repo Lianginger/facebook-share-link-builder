@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Facebook 分享連結產生器</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header text-center m-5">
+        <h1>Facebook 分享連結產生器</h1>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <form id="share-link-builder">
+            <div class="form-group">
+              <label for="link-url" class="required">Link URL</label>
+              <input type="text" class="form-control" id="link-url" />
+              <small class="form-text text-muted">
+                請使用 <a href="https://picsee.co/">PicSee</a> 編輯好分享連結的縮圖、大標、說明文字。
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="hashtag">Hashtag</label>
+              <input type="text" class="form-control" id="hashtag" />
+              <small class="form-text text-muted">
+                Hashtag 請勿使用數字開頭。
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="quote">Quote</label>
+              <input type="text" class="form-control" id="quote" />
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <p>Check out the results:</p>
+          <a target="_blank" href="" id="link-anchor">
+            <div>
+              <p id="link-display"></p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <script>
+      const fbSharer = 'https://www.facebook.com/sharer/sharer.php'
+      const form = document.getElementById('share-link-builder')
+      let linkURL = document.getElementById('link-url')
+      let hashtag = document.getElementById('hashtag')
+      let quote = document.getElementById('quote')
+      const linkAnchor = document.getElementById('link-anchor')
+      const linkDisplay = document.getElementById('link-display')
+
+      form.addEventListener('input', e => {
+        if (linkURL.value === '') {
+          linkDisplay.innerText = ''
+          linkAnchor.href = ''
+        } else {
+          const finalShareLink =
+            fbSharer +
+            `?u=${encodeURIComponent(linkURL.value)}` +
+            (hashtag.value !== '' ? `&hashtag=%23${encodeURIComponent(hashtag.value)}` : '') +
+            (quote.value !== '' ? `&quote=${encodeURIComponent(quote.value)}` : '')
+          linkDisplay.innerText = finalShareLink
+          linkAnchor.href = finalShareLink
+        }
+      })
+    </script>
+  </body>
+</html>
