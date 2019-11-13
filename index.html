@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Facebook 分享連結產生器</title>
+    <title>Facebook 分享連結產生器｜一鍵輕鬆分享貼文</title>
+    <meta name="description" content="設定連結、主題標籤和引文，就可以快速產生 Facebook 分享連結，讓你的用戶一鍵輕鬆分享貼文！" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tools.zectrack.today/facebook-share-link-builder/" />
+    <meta property="og:title" content="Facebook 分享連結產生器｜一鍵輕鬆分享貼文" />
+    <meta property="og:description" content="設定連結、主題標籤和引文，就可以快速產生 Facebook 分享連結，讓你的用戶一鍵輕鬆分享貼文！" />
+    <meta property="og:image" content="./og-image.jpg" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,7 +33,9 @@
               <label for="link-url" class="required">Link URL</label>
               <input type="text" class="form-control" id="link-url" />
               <small class="form-text text-muted">
-                請使用 <a target="_blank" href="https://picsee.co/">PicSee</a> 編輯好分享連結的縮圖、大標、說明文字。
+                請使用
+                <a target="_blank" href="https://picsee.co/">PicSee</a>
+                編輯好分享連結的縮圖、大標、說明文字。
               </small>
             </div>
             <div class="form-group">
@@ -49,7 +58,9 @@
               <p id="link-display"></p>
             </div>
           </a>
-          <button class="btn btn-primary d-none" id="copy-button" onclick="copyLink()">Copy Link</button>
+          <button class="btn btn-primary d-none" id="copy-button" onclick="copyLink()">
+            Copy Link
+          </button>
         </div>
       </div>
       <hr />
